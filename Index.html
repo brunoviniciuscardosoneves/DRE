@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;">Demonstração do Resultado do Exercício (DRE)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Valor (R$)</th>
+            </tr>
+        </thead>
+        <tbody id="dre-body">
+            <!-- Linhas da DRE serão inseridas aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Dados fornecidos
+        const receitaBruta = 162000;
+        const custosVendas = 72000;
+        const despesasAdministrativas = 4320;
+        const despesasFinanceiras = 3985;
+        const receitasFinanceiras = 21600;
+        const impostoRenda = 0.15;
+        const contribuicaoSocial = 0.09;
+        const participacaoEmpregados = 0.10;
+
+        // Cálculos
+        const receitaLiquida = receitaBruta;
+        const resultadoBruto = receitaLiquida - custosVendas;
+        const resultadoOperacional = resultadoBruto - despesasAdministrativas - despesasFinanceiras + receitasFinanceiras;
+        const provisaoIR = resultadoOperacional * impostoRenda;
+        const provisaoCSLL = resultadoOperacional * contribuicaoSocial;
+        const lucroAntesParticipacoes = resultadoOperacional - provisaoIR - provisaoCSLL;
+        const participacao = lucroAntesParticipacoes * participacaoEmpregados;
+        const lucroLiquido = lucroAntesParticipacoes - participacao;
+
+        // Inserir dados na tabela
+        const dreBody = document.getElementById('dre-body');
+        const dadosDRE = [{
+            descricao: 'Receita Operacional Bruta',
+            valor: receitaBruta
+        }, {
+            descricao: '(-) Custos das Vendas',
+            valor: -custosVendas
+        }, {
+            descricao: 'Resultado Operacional Bruto',
+            valor: resultadoBruto
+        }, {
+            descricao: '(-) Despesas Administrativas',
+            valor: -despesasAdministrativas
+        }, {
+            descricao: '(-) Despesas Financeiras',
+            valor: -despesasFinanceiras
+        }, {
+            descricao: '(+) Receitas Financeiras',
+            valor: receitasFinanceiras
+        }, {
+            descricao: 'Resultado Operacional Antes do IR e CSLL',
+            valor: resultadoOperacional
+        }, {
+            descricao: '(-) Provisão para IR',
+            valor: -provisaoIR
+        }, {
+            descricao: '(-) Provisão para CSLL',
+            valor: -provisaoCSLL
+        }, {
+            descricao: 'Lucro Líquido Antes das Participações',
+            valor: lucroAntesParticipacoes
+        }, {
+            descricao: '(-) Participação dos Empregados',
+            valor: -participacao
+        }, {
+            descricao: 'Resultado Líquido do Exercício',
+            valor: lucroLiquido
+        }];
+
+        dadosDRE.forEach(item => {
+            const row = document.createElement('tr');
+            const descricaoCell = document.createElement('td');
+            const valorCell = document.createElement('td');
+            descricaoCell.textContent = item.descricao;
+            valorCell.textContent = item.valor.toFixed(2);
+            row.appendChild(descricaoCell);
+            row.appendChild(valorCell);
+            dreBody.appendChild(row);
+        });
+    </script>
+</body>
+
+</html>
