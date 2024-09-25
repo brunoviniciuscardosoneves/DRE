@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balancete de Verificação</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6b73ff, #000dff);
+            font-family: Arial, sans-serif;
+            color: #181616;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+        }
+        
+        h1,
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #1f1d1d;
+        }
+        
+        th {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .tables {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .table-container {
+            width: 45%;
+            min-width: 300px;
+        }
+        
+        .full-width {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Balancete de Verificação - Saldos</h1>
+        <div class="tables">
+            <div class="table-container">
+                <table id="balancete">
+                    <thead>
+                        <tr>
+                            <th>Conta</th>
+                            <th>Débito</th>
+                            <th>Crédito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Caixa</td>
+                            <td><input type="number" value="1000" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Banco</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="500" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Receita de vendas</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="2000" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Duplicatas a pagar</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="300" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Imóveis</td>
+                            <td><input type="number" value="1500" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Móveis e Utensílios</td>
+                            <td><input type="number" value="800" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Máquinas e equipamentos</td>
+                            <td><input type="number" value="1200" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Encargos Sociais</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="400" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Estoques</td>
+                            <td><input type="number" value="700" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Despesas com aluguel</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="600" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Custo das mercadorias vendidas</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="900" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Capital Social</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="5000" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Despesas com salários</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="1200" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Despesas com juros</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="300" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Despesas administrativas</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="400" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Duplicatas a receber</td>
+                            <td><input type="number" value="1000" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Receita com Juros</td>
+                            <td><input type="number" value="0" oninput="calcularTotal()"></td>
+                            <td><input type="number" value="150" oninput="calcularTotal()"></td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td id="totalDebito">6200</td>
+                            <td id="totalCredito">10750</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onclick="adicionarLinha()">Adicionar Linha</button>
+            </div>
+            <div class="table-container">
+                <h2>DEMONSTRAÇÃO DO RESULTADO DO EXERCÍCIO</h2>
+                <table id="dre">
+                    <thead>
+                        <tr>
+                            <th>Conta</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RECEITA OPERACIONAL BRUTA</td>
+                            <td><input type="number" value="162000" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(-) DEDUÇÕES DA RECEITA BRUTA</td>
+                            <td><input type="number" value="0" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(=) RECEITA OPERACIONAL LÍQUIDA</td>
+                            <td><input type="number" value="162000" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(-) CUSTO DAS MERCADORIAS VENDIDAS</td>
+                            <td><input type="number" value="79000" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(=) RESULTADO OPERACIONAL BRUTO</td>
+                            <td><input type="number" value="83000" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(-) DESPESAS OPERACIONAIS</td>
+                            <td><input type="number" value="38000" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(=) RESULTADO OPERACIONAL LÍQUIDO</td>
+                            <td><input type="number" value="45000" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(+) RECEITAS NÃO OPERACIONAIS</td>
+                            <td><input type="number" value="150" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(-) DESPESAS NÃO OPERACIONAIS</td>
+                            <td><input type="number" value="400" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(=) RESULTADO ANTES DO IR E CS</td>
+                            <td><input type="number" value="44650" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(-) IMPOSTO DE RENDA</td>
+                            <td><input type="number" value="6700" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(-) CONTRIBUIÇÃO SOCIAL</td>
+                            <td><input type="number" value="2415" oninput="calcularTotalDRE()"></td>
+                        </tr>
+                        <tr>
+                            <td>(=) RESULTADO LÍQUIDO DO EXERCÍCIO</td>
+                            <td id="resultadoLiquido">35535</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onclick="adicionarLinhaDRE()">Adicionar Linha</button>
+            </div>
+        </div>
+        <div class="table-container full-width">
+            <h2>Balanço Patrimonial</h2>
+            <table id="balancoPatrimonial">
+                <thead>
+                    <tr>
+                        <th>Conta</th>
+                        <th>Ativo</th>
+                        <th>Passivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Caixa</td>
+                        <td><input type="number" value="1000" oninput="calcularTotalBalanco()"></td>
+                        <td><input type="number" value="0" oninput="calcularTotalBalanco()"></td>
+                    </tr>
+                    <tr>
+                        <td>Banco</td>
+                        <td><input type="number" value="500" oninput="calcularTotalBalanco()"></td>
+                        <td><input type="number" value="0" oninput="calcularTotalBalanco()"></td>
+                    </tr>
+                    <tr>
+                        <td>Imóveis</td>
+                        <td><input type="number" value="1500" oninput="calcularTotalBalanco()"></td>
+                        <td><input type="number" value="0" oninput="calcularTotalBalanco()"></td>
+                    </tr>
+                    <tr>
+                        <td>Duplicatas a pagar</td>
+                        <td><input type="number" value="0" oninput="calcularTotalBalanco()"></td>
+                        <td><input type="number" value="300" oninput="calcularTotalBalanco()"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="totalAtivo">3000</td>
+                        <td id="totalPassivo">300</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="adicionarLinhaBalanco()">Adicionar Linha</button>
+        </div>
+    </div>
+
+    <script>
+        function calcularTotal() {
+            const balancete = document.querySelectorAll("#balancete tbody tr");
+            let totalDebito = 0;
+            let totalCredito = 0;
+
+            balancete.forEach((row, index) => {
+                if (index < balancete.length - 1) {
+                    const debito = parseFloat(row.querySelectorAll("input")[0].value) || 0;
+                    const credito = parseFloat(row.querySelectorAll("input")[1].value) || 0;
+
+                    totalDebito += debito;
+                    totalCredito += credito;
+                }
+            });
+
+            document.getElementById("totalDebito").innerText = totalDebito;
+            document.getElementById("totalCredito").innerText = totalCredito;
+        }
+
+        function adicionarLinha() {
+            const table = document.getElementById("balancete").getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow(table.rows.length - 1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = '<input type="text">';
+            cell2.innerHTML = '<input type="number" oninput="calcularTotal()">';
+            cell3.innerHTML = '<input type="number" oninput="calcularTotal()">';
+        }
+
+        function calcularTotalDRE() {
+            const dre = document.querySelectorAll("#dre tbody tr");
+            let resultadoLiquido = 0;
+
+            dre.forEach((row, index) => {
+                if (index === dre.length - 1) {
+                    const receitaOperacionalBruta = parseFloat(dre[0].querySelector("input").value) || 0;
+                    const deducoesReceitaBruta = parseFloat(dre[1].querySelector("input").value) || 0;
+                    const receitaOperacionalLiquida = receitaOperacionalBruta - deducoesReceitaBruta;
+                    dre[2].querySelector("input").value = receitaOperacionalLiquida;
+
+                    const custoMercadoriasVendidas = parseFloat(dre[3].querySelector("input").value) || 0;
+                    const resultadoOperacionalBruto = receitaOperacionalLiquida - custoMercadoriasVendidas;
+                    dre[4].querySelector("input").value = resultadoOperacionalBruto;
+
+                    const despesasOperacionais = parseFloat(dre[5].querySelector("input").value) || 0;
+                    const resultadoOperacionalLiquido = resultadoOperacionalBruto - despesasOperacionais;
+                    dre[6].querySelector("input").value = resultadoOperacionalLiquido;
+
+                    const receitasNaoOperacionais = parseFloat(dre[7].querySelector("input").value) || 0;
+                    const despesasNaoOperacionais = parseFloat(dre[8].querySelector("input").value) || 0;
+                    const resultadoAntesIRCS = resultadoOperacionalLiquido + receitasNaoOperacionais - despesasNaoOperacionais;
+                    dre[9].querySelector("input").value = resultadoAntesIRCS;
+
+                    const impostoRenda = parseFloat(dre[10].querySelector("input").value) || 0;
+                    const contribuicaoSocial = parseFloat(dre[11].querySelector("input").value) || 0;
+                    resultadoLiquido = resultadoAntesIRCS - impostoRenda - contribuicaoSocial;
+                    dre[12].querySelector("td#resultadoLiquido").innerText = resultadoLiquido;
+                }
+            });
+        }
+
+        function adicionarLinhaDRE() {
+            const table = document.getElementById("dre").getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow(table.rows.length - 1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+
+            cell1.innerHTML = '<input type="text">';
+            cell2.innerHTML = '<input type="number" oninput="calcularTotalDRE()">';
+        }
+
+        function calcularTotalBalanco() {
+            const balanco = document.querySelectorAll("#balancoPatrimonial tbody tr");
+            let totalAtivo = 0;
+            let totalPassivo = 0;
+
+            balanco.forEach((row, index) => {
+                if (index < balanco.length - 1) {
+                    const ativo = parseFloat(row.querySelectorAll("input")[0].value) || 0;
+                    const passivo = parseFloat(row.querySelectorAll("input")[1].value) || 0;
+
+                    totalAtivo += ativo;
+                    totalPassivo += passivo;
+                }
+            });
+
+            document.getElementById("totalAtivo").innerText = totalAtivo;
+            document.getElementById("totalPassivo").innerText = totalPassivo;
+        }
+
+        function adicionarLinhaBalanco() {
+            const table = document.getElementById("balancoPatrimonial").getElementsByTagName('tbody')[0];
+            const newRow = table
+    </script>
+</body>
+
+</html>
