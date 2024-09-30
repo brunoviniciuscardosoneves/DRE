@@ -182,116 +182,137 @@
         </table>
 
         <h2>Balanço Patrimonial</h2>
-        <div class="balancoContainer">
-            <div class="ativoContainer">
-                <h3>Ativo</h3>
-                <table class="balancoTable">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ativoBody">
-                        <tr>
-                            <td>Ativo Circulante</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Caixa</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Bancos</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Duplicatas a Receber</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Estoques</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Ativo Não Circulante</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Realizável a Longo Prazo</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Investimentos</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Imobilizado</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Intangível</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Total do Ativo</strong></td>
-                            <td id="totalAtivo">0.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="passivoContainer">
-                <h3>Passivo</h3>
-                <table class="balancoTable">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody id="passivoBody">
-                        <tr>
-                            <td>Passivo Circulante</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Duplicatas a Pagar</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Provisão para Imposto de Renda e CSSL</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Participações a Pagar</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Passivo Não Circulante</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>PATRIMÔNIO LÍQUIDO</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Capital Social</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td>Lucros ou Prejuízos Acumulados</td>
-                            <td><input type="number" placeholder="Valor"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Total do Passivo + PL</strong></td>
-                            <td id="totalPassivo">0.00</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="container">
+            <h2>Balanço Patrimonial</h2>
+            <div class="balancoContainer">
+                <div class="ativoContainer">
+                    <h3>Ativo</h3>
+                    <table class="balancoTable">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ativoBody">
+                            <tr>
+                                <td>Ativo Circulante</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Caixa</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Bancos</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Duplicatas a Receber</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Estoques</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Ativo Não Circulante</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Realizável a Longo Prazo</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Investimentos</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Imobilizado</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Intangível</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total do Ativo</strong></td>
+                                <td id="totalAtivo">0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="passivoContainer">
+                    <h3>Passivo</h3>
+                    <table class="balancoTable">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="passivoBody">
+                            <tr>
+                                <td>Passivo Circulante</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Duplicatas a Pagar</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Provisão para Imposto de Renda e CSSL</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Participações a Pagar</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Passivo Não Circulante</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>PATRIMÔNIO LÍQUIDO</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Capital Social</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
+                            </tr>
+                            <tr>
+                                <td>Lucros ou Prejuízos Acumulados</td>
+                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total do Passivo + PL</strong></td>
+                                <td id="totalPassivo">0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="script.js"></script>
+
+        <script>
+            function calcularTotalAtivo() {
+                const inputs = document.querySelectorAll('#ativoBody input[type="number"]');
+                let total = 0;
+                inputs.forEach(input => {
+                    total += parseFloat(input.value) || 0;
+                });
+                document.getElementById('totalAtivo').innerText = total.toFixed(2);
+            }
+
+            function calcularTotalPassivo() {
+                const inputs = document.querySelectorAll('#passivoBody input[type="number"]');
+                let total = 0;
+                inputs.forEach(input => {
+                    total += parseFloat(input.value) || 0;
+                });
+                document.getElementById('totalPassivo').innerText = total.toFixed(2);
+            }
+        </script>
 </body>
 
 </html>
