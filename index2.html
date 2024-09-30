@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Razonetes</title>
+    <style>
+            body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f3f5;
+            color: #343a40;
+            background-image: url('https://as1.ftcdn.net/v2/jpg/01/57/51/18/1000_F_157511881_G93By1ROHXcClxjg2ItfTPi1VrFziY8p.jpg');
+            /* Adicione a URL da imagem de fundo aqui */
+            background-size: cover;
+            background-attachment: fixed;
+            .balancoContainer {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            .balancoTable {
+                width: 47%;
+                /* Ajuste a largura das tabelas */
+                border-collapse: collapse;
+            }
+            .balancoTable th,
+            .balancoTable td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+            }
+            .balancoTable th {
+                background-color: #f2f2f2;
+            }
+            .balancoContainer>div {
+                margin: 0 10px;
+                /* Espaçamento entre as tabelas */
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Controle de Razonetes</h1>
+        <form id="razoneteForm">
+            <label for="tipo">Tipo de Razonete:</label>
+            <select id="tipo">
+                <option value="Capital Social">Capital Social</option>
+                <option value="Caixa">Caixa</option>
+                <option value="Bancos">Bancos</option>
+                <option value="Receita de Vendas">Receita de Vendas</option>
+                <option value="Imóveis">Imóveis</option>
+                <option value="Despesas com Aluguel">Despesas com Aluguel</option>
+                <option value="Móveis e Utensílios">Móveis e Utensílios</option>
+                <option value="Despesas Administrativas">Despesas Administrativas</option>
+                <option value="Duplicatas a Pagar">Duplicatas a Pagar</option>
+                <option value="Estoques">Estoques</option>
+                <option value="Encargos Sociais">Encargos Sociais</option>
+                <option value="Máquinas e Equipamentos">Máquinas e Equipamentos</option>
+                <option value="Duplicatas a Receber">Duplicatas a Receber</option>
+                <option value="Receita com Juros">Receita com Juros</option>
+                <option value="Custo de Mercadoria Vendida">Custo de Mercadoria Vendida</option>
+                <option value="Despesas com Salários">Despesas com Salários</option>
+                <option value="Despesas com Juros">Despesas com Juros</option>
+            </select>
+            <label for="lancamento">Lançamento:</label>
+            <select id="lancamento">
+                <option value="credito">Crédito</option>
+                <option value="debito">Débito</option>
+            </select>
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" required>
+            <button type="submit">Adicionar Lançamento</button>
+
+            <button type="button" id="undoButton">Desfazer Último Lançamento</button>
+        </form>
+        <div id="razonetesContainer"></div>
+        <h2>Balancetes</h2>
+        <table id="balancetesTable">
+            <thead>
+                <tr>
+                    <th>Tipo de Razonete</th>
+                    <th>Saldo</th>
+                    <th>Débito</th>
+                    <th>Crédito</th>
+                </tr>
+            </thead>
+            <tbody id="balancetesBody"></tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>Totais</strong></td>
+                    <td id="totalSaldo">0.00</td>
+                    <td id="totalDebito">0.00</td>
+                    <td id="totalCredito">0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+        <h2>Demonstração do Resultado do Exercício</h2>
+        <table id="demonstracaoTable">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody id="demonstracaoBody">
+                <tr>
+                    <td>Receita operacional bruta</td>
+                    <td id="receitaOperacionalBruta">0.00</td>
+                </tr>
+                <tr>
+                    <td>Deduções da receita bruta</td>
+                    <td><input type="number" id="deducoesReceitaBruta" placeholder="Valor manual"></td>
+                </tr>
+                <tr>
+                    <td>Receita operacional líquida</td>
+                    <td id="receitaOperacionalLiquida">0.00</td>
+                </tr>
+                <tr>
+                    <td>Custo das mercadorias vendidas</td>
+                    <td><input type="number" id="custoMercadoriasVendidas" placeholder="Valor manual"></td>
+                </tr>
+                <tr>
+                    <td>Resultado operacional bruto</td>
+                    <td id="resultadoOperacionalBruto">0.00</td>
+                </tr>
+                <tr>
+                    <td>Despesas operacionais</td>
+                    <td><input type="number" id="despesasOperacionais" placeholder="Valor manual"></td>
+                </tr>
+                <tr>
+                    <td>Despesas administrativas</td>
+                    <td><input type="number" id="despesasAdministrativas" placeholder="Valor manual"></td>
+                </tr>
+                <tr>
+                    <td>Despesas financeiras</td>
+                    <td><input type="number" id="despesasFinanceiras" placeholder="Valor manual"></td>
+                </tr>
+                <tr>
+                    <td>Receitas financeiras</td>
+                    <td><input type="number" id="receitasFinanceiras" placeholder="Valor manual"></td>
+                </tr>
+                <tr>
+                    <td>Resultado operacional antes do IR e da CSSL</td>
+                    <td id="resultadoOperacionalAntesIR">0.00</td>
+                </tr>
+                <tr>
+                    <td>Provisão para o Imposto de Renda (%)</td>
+                    <td>
+                        <input type="number" id="porcentagemIR" placeholder="Porcentagem" oninput="atualizarValoresImpostos()">
+                        <span id="valorIR">0.00</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contribuição Sociais sobre o Lucro (%)</td>
+                    <td>
+                        <input type="number" id="porcentagemCSLL" placeholder="Porcentagem" oninput="atualizarValoresImpostos()">
+                        <span id="valorCSLL">0.00</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lucro Líquido antes das Participações</td>
+                    <td id="lucroLiquido">0.00</td>
+                </tr>
+                <tr>
+                    <td>Debêntures, Empregados, Participações de Administradores, Partes Beneficiárias (%)</td>
+                    <td>
+                        <input type="number" id="participacoes" placeholder="Porcentagem" oninput="atualizarParticipacoes()">
+                        <span id="valorParticipacoes">0.00</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RESULTADO LÍQUIDO DO EXERCÍCIO</td>
+                    <td id="resultadoLiquido">0.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Balanço Patrimonial</h2>
+        <div class="balancoContainer">
+            <div class="ativoContainer">
+                <h3>Ativo</h3>
+                <table class="balancoTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ativoBody">
+                        <tr class="ativo">
+                            <td>Ativo Circulante</td>
+                            <td></td>
+                        </tr>
+                        <tr class="ativo">
+                            <td>Caixa</td>
+                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="ativo">
+                            <td>Bancos</td>
+                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="ativo">
+                            <td>Duplicatas a Receber</td>
+                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="ativo">
+                            <td>Estoques</td>
+                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="ativo">
+                            <td><strong>Total do Ativo</strong></td>
+                            <td id="totalAtivo">0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="passivoContainer">
+                <h3>Passivo</h3>
+                <table class="balancoTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="passivoBody">
+                        <tr class="passivo">
+                            <td>Passivo Circulante</td>
+                            <td></td>
+                        </tr>
+                        <tr class="passivo">
+                            <td>Duplicatas a Pagar</td>
+                            <td><input type="number" oninput="calcularTotalPassivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="passivo">
+                            <td>Provisão para Imposto de Renda e CSSL</td>
+                            <td><input type="number" oninput="calcularTotalPassivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="passivo">
+                            <td>Participações a Pagar</td>
+                            <td><input type="number" oninput="calcularTotalPassivo()" placeholder="Valor"></td>
+                        </tr>
+                        <tr class="passivo">
+                            <td><strong>Total do Passivo + PL</strong></td>
+                            <td id="totalPassivo">0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calcularTotalAtivo() {
+            const inputs = document.querySelectorAll('#ativoBody input[type="number"]');
+            let total = 0;
+            inputs.forEach(input => {
+                total += parseFloat(input.value) || 0;
+            });
+            document.getElementById('totalAtivo').innerText = total.toFixed(2);
+        }
+
+        function calcularTotalPassivo() {
+            const inputs = document.querySelectorAll('#passivoBody input[type="number"]');
+            let total = 0;
+            inputs.forEach(input => {
+                total += parseFloat(input.value) || 0;
+            });
+            document.getElementById('totalPassivo').innerText = total.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
