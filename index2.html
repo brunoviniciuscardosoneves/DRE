@@ -43,6 +43,8 @@
     </style>
 </head>
 
+</head>
+
 <body>
     <div class="container">
         <h1>Controle de Razonetes</h1>
@@ -75,7 +77,6 @@
             <label for="valor">Valor:</label>
             <input type="number" id="valor" required>
             <button type="submit">Adicionar Lançamento</button>
-
             <button type="button" id="undoButton">Desfazer Último Lançamento</button>
         </form>
         <div id="razonetesContainer"></div>
@@ -192,27 +193,47 @@
                         </tr>
                     </thead>
                     <tbody id="ativoBody">
-                        <tr class="ativo">
+                        <tr>
                             <td>Ativo Circulante</td>
                             <td></td>
                         </tr>
-                        <tr class="ativo">
+                        <tr>
                             <td>Caixa</td>
-                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="ativo">
+                        <tr>
                             <td>Bancos</td>
-                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="ativo">
+                        <tr>
                             <td>Duplicatas a Receber</td>
-                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="ativo">
+                        <tr>
                             <td>Estoques</td>
-                            <td><input type="number" oninput="calcularTotalAtivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="ativo">
+                        <tr>
+                            <td>Ativo Não Circulante</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Realizável a Longo Prazo</td>
+                            <td><input type="number" placeholder="Valor"></td>
+                        </tr>
+                        <tr>
+                            <td>Investimentos</td>
+                            <td><input type="number" placeholder="Valor"></td>
+                        </tr>
+                        <tr>
+                            <td>Imobilizado</td>
+                            <td><input type="number" placeholder="Valor"></td>
+                        </tr>
+                        <tr>
+                            <td>Intangível</td>
+                            <td><input type="number" placeholder="Valor"></td>
+                        </tr>
+                        <tr>
                             <td><strong>Total do Ativo</strong></td>
                             <td id="totalAtivo">0.00</td>
                         </tr>
@@ -229,23 +250,39 @@
                         </tr>
                     </thead>
                     <tbody id="passivoBody">
-                        <tr class="passivo">
+                        <tr>
                             <td>Passivo Circulante</td>
                             <td></td>
                         </tr>
-                        <tr class="passivo">
+                        <tr>
                             <td>Duplicatas a Pagar</td>
-                            <td><input type="number" oninput="calcularTotalPassivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="passivo">
+                        <tr>
                             <td>Provisão para Imposto de Renda e CSSL</td>
-                            <td><input type="number" oninput="calcularTotalPassivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="passivo">
+                        <tr>
                             <td>Participações a Pagar</td>
-                            <td><input type="number" oninput="calcularTotalPassivo()" placeholder="Valor"></td>
+                            <td><input type="number" placeholder="Valor"></td>
                         </tr>
-                        <tr class="passivo">
+                        <tr>
+                            <td>Passivo Não Circulante</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>PATRIMÔNIO LÍQUIDO</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Capital Social</td>
+                            <td><input type="number" placeholder="Valor"></td>
+                        </tr>
+                        <tr>
+                            <td>Lucros ou Prejuízos Acumulados</td>
+                            <td><input type="number" placeholder="Valor"></td>
+                        </tr>
+                        <tr>
                             <td><strong>Total do Passivo + PL</strong></td>
                             <td id="totalPassivo">0.00</td>
                         </tr>
@@ -254,25 +291,7 @@
             </div>
         </div>
     </div>
-    <script>
-        function calcularTotalAtivo() {
-            const inputs = document.querySelectorAll('#ativoBody input[type="number"]');
-            let total = 0;
-            inputs.forEach(input => {
-                total += parseFloat(input.value) || 0;
-            });
-            document.getElementById('totalAtivo').innerText = total.toFixed(2);
-        }
-
-        function calcularTotalPassivo() {
-            const inputs = document.querySelectorAll('#passivoBody input[type="number"]');
-            let total = 0;
-            inputs.forEach(input => {
-                total += parseFloat(input.value) || 0;
-            });
-            document.getElementById('totalPassivo').innerText = total.toFixed(2);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
