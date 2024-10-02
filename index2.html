@@ -7,42 +7,54 @@
     <link rel="stylesheet" href="styles.css">
     <title>Razonetes</title>
     <style>
-            body {
+        body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f1f3f5;
             color: #343a40;
-            background-image: url('https://as1.ftcdn.net/v2/jpg/01/57/51/18/1000_F_157511881_G93By1ROHXcClxjg2ItfTPi1VrFziY8p.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f3f5;
+            color: #343a40;
+            background-image: url('https://img.freepik.com/free-photo/office-with-documents-money-accounts_144627-33569.jpg?t=st=1727828505~exp=1727832105~hmac=434755a472570bfbb6372d7186815d0bf3dee17d06356b9ee82b66dadc278443&w=740');
             /* Adicione a URL da imagem de fundo aqui */
             background-size: cover;
             background-attachment: fixed;
-            .balancoContainer {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
-            .balancoTable {
-                width: 47%;
-                /* Ajuste a largura das tabelas */
-                border-collapse: collapse;
-            }
-            .balancoTable th,
-            .balancoTable td {
-                border: 1px solid #ccc;
-                padding: 8px;
-                text-align: left;
-            }
-            .balancoTable th {
-                background-color: #f2f2f2;
-            }
-            .balancoContainer>div {
-                margin: 0 10px;
-                /* Espaçamento entre as tabelas */
-            }
+        }
+        
+        .balancoContainer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .balancoTable {
+            width: 47%;
+            border-collapse: collapse;
+        }
+        
+        .balancoTable th,
+        .balancoTable td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .balancoTable th {
+            background-color: #f2f2f2;
+        }
+        
+        .balancoContainer>div {
+            margin: 0 10px;
+        }
     </style>
-</head>
-
 </head>
 
 <body>
@@ -79,6 +91,7 @@
             <button type="submit">Adicionar Lançamento</button>
             <button type="button" id="undoButton">Desfazer Último Lançamento</button>
         </form>
+
         <div id="razonetesContainer"></div>
         <h2>Balancetes</h2>
         <table id="balancetesTable">
@@ -100,6 +113,7 @@
                 </tr>
             </tfoot>
         </table>
+
         <h2>Demonstração do Resultado do Exercício</h2>
         <table id="demonstracaoTable">
             <thead>
@@ -115,7 +129,7 @@
                 </tr>
                 <tr>
                     <td>Deduções da receita bruta</td>
-                    <td><input type="number" id="deducoesReceitaBruta" placeholder="Valor manual"></td>
+                    <td><input type="number" id="deducoesReceitaBruta" placeholder="Valor manual" oninput="atualizarValoresDRE()"></td>
                 </tr>
                 <tr>
                     <td>Receita operacional líquida</td>
@@ -123,7 +137,7 @@
                 </tr>
                 <tr>
                     <td>Custo das mercadorias vendidas</td>
-                    <td><input type="number" id="custoMercadoriasVendidas" placeholder="Valor manual"></td>
+                    <td><input type="number" id="custoMercadoriasVendidas" placeholder="Valor manual" oninput="atualizarValoresDRE()"></td>
                 </tr>
                 <tr>
                     <td>Resultado operacional bruto</td>
@@ -131,19 +145,19 @@
                 </tr>
                 <tr>
                     <td>Despesas operacionais</td>
-                    <td><input type="number" id="despesasOperacionais" placeholder="Valor manual"></td>
+                    <td><input type="number" id="despesasOperacionais" placeholder="Valor manual" oninput="atualizarValoresDRE()"></td>
                 </tr>
                 <tr>
                     <td>Despesas administrativas</td>
-                    <td><input type="number" id="despesasAdministrativas" placeholder="Valor manual"></td>
+                    <td><input type="number" id="despesasAdministrativas" placeholder="Valor manual" oninput="atualizarValoresDRE()"></td>
                 </tr>
                 <tr>
                     <td>Despesas financeiras</td>
-                    <td><input type="number" id="despesasFinanceiras" placeholder="Valor manual"></td>
+                    <td><input type="number" id="despesasFinanceiras" placeholder="Valor manual" oninput="atualizarValoresDRE()"></td>
                 </tr>
                 <tr>
                     <td>Receitas financeiras</td>
-                    <td><input type="number" id="receitasFinanceiras" placeholder="Valor manual"></td>
+                    <td><input type="number" id="receitasFinanceiras" placeholder="Valor manual" oninput="atualizarValoresDRE()"></td>
                 </tr>
                 <tr>
                     <td>Resultado operacional antes do IR e da CSSL</td>
@@ -168,7 +182,7 @@
                     <td id="lucroLiquido">0.00</td>
                 </tr>
                 <tr>
-                    <td>Debêntures, Empregados, Participações de Administradores, Partes Beneficiárias (%)</td>
+                    <td>Participações (%)</td>
                     <td>
                         <input type="number" id="participacoes" placeholder="Porcentagem" oninput="atualizarParticipacoes()">
                         <span id="valorParticipacoes">0.00</span>
@@ -180,139 +194,143 @@
                 </tr>
             </tbody>
         </table>
+    </div>
 
-        <h2>Balanço Patrimonial</h2>
-        <div class="container">
-            <h2>Balanço Patrimonial</h2>
-            <div class="balancoContainer">
-                <div class="ativoContainer">
-                    <h3>Ativo</h3>
-                    <table class="balancoTable">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ativoBody">
-                            <tr>
-                                <td>Ativo Circulante</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Caixa</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Bancos</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Duplicatas a Receber</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Estoques</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Ativo Não Circulante</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Realizável a Longo Prazo</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Investimentos</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Imobilizado</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Intangível</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalAtivo()"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total do Ativo</strong></td>
-                                <td id="totalAtivo">0.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="passivoContainer">
-                    <h3>Passivo</h3>
-                    <table class="balancoTable">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody id="passivoBody">
-                            <tr>
-                                <td>Passivo Circulante</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Duplicatas a Pagar</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Provisão para Imposto de Renda e CSSL</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Participações a Pagar</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Passivo Não Circulante</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>PATRIMÔNIO LÍQUIDO</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Capital Social</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
-                            </tr>
-                            <tr>
-                                <td>Lucros ou Prejuízos Acumulados</td>
-                                <td><input type="number" placeholder="Valor" oninput="calcularTotalPassivo()"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total do Passivo + PL</strong></td>
-                                <td id="totalPassivo">0.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <script>
+        let lanzamentos = [];
 
-        <script>
-            function calcularTotalAtivo() {
-                const inputs = document.querySelectorAll('#ativoBody input[type="number"]');
-                let total = 0;
-                inputs.forEach(input => {
-                    total += parseFloat(input.value) || 0;
-                });
-                document.getElementById('totalAtivo').innerText = total.toFixed(2);
+        document.getElementById('razoneteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const tipo = document.getElementById('tipo').value;
+            const lancamento = document.getElementById('lancamento').value;
+            const valor = parseFloat(document.getElementById('valor').value);
+
+            lanzamentos.push({
+                tipo,
+                lancamento,
+                valor
+            });
+
+            document.getElementById('valor').value = '';
+
+            atualizaBalancetes();
+            atualizarValoresDRE();
+        });
+
+        function atualizaBalancetes() {
+            const saldos = {};
+
+            lanzamentos.forEach(({
+                tipo,
+                lancamento,
+                valor
+            }) => {
+                if (!saldos[tipo]) saldos[tipo] = {
+                    debito: 0,
+                    credito: 0,
+                    saldo: 0
+                };
+                if (lancamento === 'debito') {
+                    saldos[tipo].debito += valor;
+                    saldos[tipo].saldo -= valor;
+                } else if (lancamento === 'credito') {
+                    saldos[tipo].credito += valor;
+                    saldos[tipo].saldo += valor;
+                }
+            });
+
+            const balancetesBody = document.getElementById('balancetesBody');
+            balancetesBody.innerHTML = '';
+            let totalDebito = 0,
+                totalCredito = 0,
+                totalSaldo = 0;
+
+            for (const tipo in saldos) {
+                const {
+                    debito,
+                    credito,
+                    saldo
+                } = saldos[tipo];
+                const row = balancetesBody.insertRow();
+                row.insertCell(0).textContent = tipo;
+                row.insertCell(1).textContent = saldo.toFixed(2);
+                row.insertCell(2).textContent = debito.toFixed(2);
+                row.insertCell(3).textContent = credito.toFixed(2);
+
+                totalDebito += debito;
+                totalCredito += credito;
+                totalSaldo += saldo;
             }
 
-            function calcularTotalPassivo() {
-                const inputs = document.querySelectorAll('#passivoBody input[type="number"]');
-                let total = 0;
-                inputs.forEach(input => {
-                    total += parseFloat(input.value) || 0;
-                });
-                document.getElementById('totalPassivo').innerText = total.toFixed(2);
-            }
-        </script>
+            document.getElementById('totalDebito').textContent = totalDebito.toFixed(2);
+            document.getElementById('totalCredito').textContent = totalCredito.toFixed(2);
+            document.getElementById('totalSaldo').textContent = totalSaldo.toFixed(2);
+        }
+
+        function atualizarValoresDRE() {
+            const receitaOperacionalBruta = lanzamentos
+                .filter(l => l.tipo === 'Receita de Vendas' || l.tipo === 'Receita com Juros')
+                .reduce((acc, l) => acc + (l.lancamento === 'credito' ? l.valor : 0), 0);
+
+            document.getElementById('receitaOperacionalBruta').textContent = receitaOperacionalBruta.toFixed(2);
+
+            const deducoesReceitaBruta = parseFloat(document.getElementById('deducoesReceitaBruta').value) || 0;
+            const receitaOperacionalLiquida = receitaOperacionalBruta - deducoesReceitaBruta;
+            document.getElementById('receitaOperacionalLiquida').textContent = receitaOperacionalLiquida.toFixed(2);
+
+            const custoMercadoriasVendidas = parseFloat(document.getElementById('custoMercadoriasVendidas').value) || 0;
+            const resultadoOperacionalBruto = receitaOperacionalLiquida - custoMercadoriasVendidas;
+            document.getElementById('resultadoOperacionalBruto').textContent = resultadoOperacionalBruto.toFixed(2);
+
+            const despesasOperacionais = parseFloat(document.getElementById('despesasOperacionais').value) || 0;
+            const despesasAdministrativas = parseFloat(document.getElementById('despesasAdministrativas').value) || 0;
+            const despesasFinanceiras = parseFloat(document.getElementById('despesasFinanceiras').value) || 0;
+            const receitasFinanceiras = parseFloat(document.getElementById('receitasFinanceiras').value) || 0;
+
+            const resultadoOperacionalAntesIR = resultadoOperacionalBruto - despesasOperacionais - despesasAdministrativas - despesasFinanceiras + receitasFinanceiras;
+            document.getElementById('resultadoOperacionalAntesIR').textContent = resultadoOperacionalAntesIR.toFixed(2);
+
+            atualizarValoresImpostos();
+        }
+
+        function atualizarValoresImpostos() {
+            const resultadoOperacionalAntesIR = parseFloat(document.getElementById('resultadoOperacionalAntesIR').textContent) || 0;
+            const porcentagemIR = parseFloat(document.getElementById('porcentagemIR').value) || 0;
+            const valorIR = (resultadoOperacionalAntesIR * porcentagemIR / 100);
+            document.getElementById('valorIR').textContent = valorIR.toFixed(2);
+
+            const porcentagemCSLL = parseFloat(document.getElementById('porcentagemCSLL').value) || 0;
+            const valorCSLL = (resultadoOperacionalAntesIR * porcentagemCSLL / 100);
+            document.getElementById('valorCSLL').textContent = valorCSLL.toFixed(2);
+
+            // Calcula o lucro líquido antes das participações
+            const lucroLiquido = resultadoOperacionalAntesIR - valorIR - valorCSLL;
+            document.getElementById('lucroLiquido').textContent = lucroLiquido.toFixed(2);
+
+            // Chama a função de atualizações de participações
+            atualizarParticipacoes();
+        }
+
+
+
+        function atualizarParticipacoes() {
+            const lucroLiquido = parseFloat(document.getElementById('lucroLiquido').textContent) || 0;
+            const participacoes = parseFloat(document.getElementById('participacoes').value) || 0;
+            const valorParticipacoes = (lucroLiquido * participacoes / 100);
+            document.getElementById('valorParticipacoes').textContent = valorParticipacoes.toFixed(2);
+
+            // Calcula o resultado líquido do exercício
+            const resultadoLiquido = lucroLiquido - valorParticipacoes;
+            document.getElementById('resultadoLiquido').textContent = resultadoLiquido.toFixed(2);
+        }
+
+
+        document.getElementById('undoButton').addEventListener('click', function() {
+            lanzamentos.pop();
+            atualizaBalancetes();
+            atualizarValoresDRE();
+        });
+    </script>
 </body>
 
 </html>
